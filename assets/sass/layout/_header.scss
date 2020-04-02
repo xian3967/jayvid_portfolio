@@ -1,0 +1,226 @@
+body{
+  overflow-x: hidden;
+  font-family: 'Neue Helvetica W01', 'AXIS Font Japanese W55', 'Helvetica Neue', sans-serif;
+}
+.l-header {
+  .l-header__nav{
+    padding-bottom: 15px;
+    position:fixed;
+    top:0;
+    background: $white;
+    display: block;
+    width:100%;
+    z-index: 10;
+    .l-header__nav__logo__wrapper{
+      width:260px;
+      margin:15px 0 0 20px;
+      display: inline-block;
+      .nav__logo{
+        @include fzb(20);
+        color:$black;
+      }
+    }
+    .l-header__nav__menu__wrapper{
+      float: right;
+      ul{
+        display: flex;
+        margin: 20px 50px 0 0;
+        li{
+          cursor: pointer;
+          display: inline-block;
+          text-align: center;
+          @include fzb(12);
+          margin: 0 30px;
+          &:hover{
+            opacity: 0.6;
+            border-bottom: 1px solid $black;
+            transition: 2s;
+          }
+        }
+      }
+    }
+  }
+  .l-header__main{
+    .l-header__main__background{
+      background: url('../images/main.jpg') fixed;
+      width: 100%;
+      height: 100vh;
+      position: relative;
+      background-size: cover;
+      background-position: top center;
+      background-repeat: no-repeat;
+      .l-header__main__contents{
+        .l-header__main__side-menu{
+          position:absolute;
+          right:-550px;
+          top:0;
+          width:450px;
+          height:100%;
+          transition: 0.5s;
+          background: $white;
+          .l-header__main__title{
+            display: none;
+            color:$black;
+            font-size: 40px;
+            position: absolute;
+            top:10%;
+            padding-left: 30px;
+            width:100%;
+            p:nth-child(1){
+              @include fz(18);
+            }
+            p:nth-child(2){
+              @include fzb(36);
+            }
+            p:nth-child(3){
+              @include fz(12);
+              color:$f9;
+              margin-top:20px;
+            }
+          }
+          .l-header__main__img{
+            display: none;
+            width: 100%;
+            position: absolute;
+            bottom:5%;
+            right:22%;
+            text-align: center;
+            img{
+              width:100%;
+              max-width: 400px;
+              box-shadow: 0 3px 20px -2px rgba(25,25,25,.3 );
+            }
+          }
+          .l-header__main__scroll__wrapper{
+            display: none;
+            .l-header__main__scroll{
+              display: -webkit-box;
+              display: -ms-flexbox;
+              display: flex;
+              position: absolute;
+              right: 45px;
+              bottom:95px;
+              -webkit-box-align: center;
+              -ms-flex-align: center;
+              align-items: center;
+              -webkit-transform: rotate(90deg);
+              transform: rotate(90deg);
+              .l-header__main__scrollTxt{
+                margin-right: .57143vw;
+                color: $black;
+                @include fz(10);
+                letter-spacing: .1em;
+              }
+              .l-header__main__scrollLine{
+                position: relative;
+                width: 60px;
+                height: 1px;
+                background: $black;
+                &::after{
+                  width: 4px;
+                  height: 4px;
+                  border-radius: 50%;
+                  background: $black;
+                  display: block;
+                  padding: 3px;
+                  position: absolute;
+                  top: -2.3px;
+                  left:50%;
+                  transform: rotate(-45deg);
+                  -webkit-transform: rotate(-45deg);
+                  -webkit-animation: scroll 1.5s linear infinite;
+                  animation: scroll 1.5s linear infinite;
+                  content: '';
+                }
+              }
+            }
+          }
+        }
+        .l-header__main__side-menu_open{
+          right:0;
+        }
+        .l-header__intro{
+          .intro, .transition{
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: #161616;
+            z-index: 100;
+            visibility: hidden;
+          }
+          .intro{
+            background: transparent;
+            opacity: 0;
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+            transition: opacity .8s ease-in-out .4s;
+            -webkit-perspective: 100px;
+            perspective: 100px;
+          }
+          .transition{
+            -webkit-transform: translateX(calc(-100% - 57.74vh)) skewX(30deg);
+            transform: translateX(calc(-100% - 57.74vh)) skewX(30deg);
+            transition: background .8s ease-in-out;
+          }
+        }
+      }
+
+      .display-intro{
+        .transition{
+          visibility: visible !important;
+          -webkit-transform: translateX(-57.74vh) skewX(-30deg) !important;
+          transform: translateX(-57.74vh) skewX(-30deg) !important;
+          width: calc(100% + 57.74vh + 57.74vh) !important;
+        }
+        .intro{
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+      .ie.display-intro{
+        .transition{
+          -webkit-transform: translateX(0);
+          transform: translateX(0);
+          width: 100%;
+        }
+      }
+      .display-loaded{
+        .transition{
+          -webkit-transform: translateX(-100%) skewX(0)!important;
+          transform: translateX(-100%) skewX(0)!important;
+          transition: all .8s ease-in-out!important;
+        }
+      }
+      .ie.display-loaded{
+        .transition{
+          transform: translateX(-100%) skewX(0);
+          transition: all 0.8s ease-in-out;
+        }
+      }
+      .ie{
+        .transition{
+          -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+        }
+      }
+    }
+  }
+}
+
+@-webkit-keyframes scroll {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 100%;
+  }
+}
+@keyframes scroll {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 100%;
+  }
+}
